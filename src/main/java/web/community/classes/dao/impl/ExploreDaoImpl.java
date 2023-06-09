@@ -31,13 +31,12 @@ public class ExploreDaoImpl implements ExploreDao{
 	@Override
 	public List<Explore> selectByUid() {
 		
-		String sql = "SELECT A.CREATE_DATE, A.CONTENT, B.PROFILE_PIC,B.NICKNAME,B.EXPLORE_AREA,B.GENDER,B.BIRTHDAY, C.PIC , D.COMMENT FROM STORY A \r\n"
-				+ "LEFT JOIN (SELECT * FROM USER) B on A.UID = B.ID\r\n"
-				+ "LEFT JOIN (SELECT * FROM STORY_PIC) C on A.ID = C.STORY_ID\r\n"
-				+ "LEFT JOIN (SELECT * FROM STORY_COMMENTS) D on A.ID = D.STORY_ID \r\n"
-				+ "ORDER BY RAND() ";
+		String sql = "SELECT A.CREATE_DATE, A.CONTENT,A.ID,B.PROFILE_PIC,B.NICKNAME,B.EXPLORE_AREA,B.GENDER,B.BIRTHDAY, C.PIC  FROM STORY A \r\n"
+				+ "			LEFT JOIN (SELECT * FROM USER) B on A.UID = B.ID\r\n"
+				+ "				LEFT JOIN (SELECT * FROM STORY_PIC) C on A.ID = C.STORY_ID\r\n"
+				+ "			ORDER BY RAND() ";
 		try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
-			;
+			
 			try (ResultSet rs = pstmt.executeQuery()) {
 				List<Explore> list = new ArrayList<>();
 				while (rs.next()) {
@@ -45,12 +44,13 @@ public class ExploreDaoImpl implements ExploreDao{
 					explore.setNickname(rs.getString("nickname"));
 					explore.setProfile_pic(rs.getBytes("profile_pic"));
 					explore.setCreate_date(rs.getTimestamp("create_date"));
-					explore.setComment(rs.getString("comment"));
 					explore.setContent(rs.getString("content"));
-					byte[] picBytes = rs.getBytes("pic");
-			        List<byte[]> picList = new ArrayList<>();
-			        picList.add(picBytes);
-			        explore.setPic(picList);
+					explore.setPic(rs.getBytes("pic"));
+					explore.setId(rs.getInt("id"));
+//					byte[] picBytes = rs.getBytes("pic");
+//			        List<byte[]> picList = new ArrayList<>();
+//			        picList.add(picBytes);
+//			        explore.setPic(picList);
 					explore.setExplore_area(rs.getString("explore_area"));
 					explore.setGender(rs.getString("gender"));
 					explore.setBirthday(rs.getDate("birthday"));
@@ -66,10 +66,10 @@ public class ExploreDaoImpl implements ExploreDao{
 
 		return null;
 	}
-	private List<byte[]> getByteArrayList(ResultSet rs, String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	private List<byte[]> getByteArrayList(ResultSet rs, String string) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 		
 		
 		

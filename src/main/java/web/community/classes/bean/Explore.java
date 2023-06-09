@@ -50,13 +50,7 @@ public class Explore implements Serializable {
 		this.content = content;
 	}
 
-	public List<byte[]> getPic() {
-		return pic;
-	}
 
-	public void setPic(List<byte[]> pic) {
-		this.pic = pic;
-	}
 
 	public String getComment() {
 		return comment;
@@ -94,12 +88,20 @@ public class Explore implements Serializable {
 		this.birthday = birthday;
 	}
 
+	public byte[] getPic() {
+		return pic;
+	}
+
+	public void setPic(byte[] pic) {
+		this.pic = pic;
+	}
+
 	private Integer id;
 	private String nickname;
 	private byte[] profile_pic;
 	private Timestamp create_date;
 	private String content;
-	private List<byte[]> pic;
+	private byte[] pic;
 	private String comment;
 	private String explore_area;
 	private String gender;

@@ -1,4 +1,4 @@
-package web.community.classes.service.impl;
+package web.community.classes.service;
 
 import java.util.List;
 

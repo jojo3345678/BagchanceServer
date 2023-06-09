@@ -16,7 +16,7 @@ import static core.util.Constants.*;
 public class CommonUtil {
 	public static Connection getConnection() throws NamingException, SQLException {
 		if (DATASOURCE == null) {
-			DATASOURCE = (DataSource) new InitialContext().lookup("java:/comp/env/jdbc/bagchance");
+			DATASOURCE = (DataSource) new InitialContext().lookup("java:/comp/env/jdbc/BagChance");
 		}
 		return DATASOURCE.getConnection();
 	}

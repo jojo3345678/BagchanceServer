@@ -1,11 +1,11 @@
-package web.community.classes.service;
+package web.community.classes.service.impl;
 
 import java.util.List;
 
 import web.community.classes.bean.Explore;
 import web.community.classes.dao.ExploreDao;
 import web.community.classes.dao.impl.ExploreDaoImpl;
-import web.community.classes.service.impl.ExploreService;
+import web.community.classes.service.ExploreService;
 
 
 
